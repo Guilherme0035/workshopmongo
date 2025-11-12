@@ -17,10 +17,10 @@ public class UserResource {
     @GetMapping
     public ResponseEntity<List<User>> findAllUsers(){
         User maria = new User("1","Maria silva", "maria@gmail.com");
-        User joao = new User("2","Joao sousa", "joao@gmail.com");
+        User davi = new User("2","Joao sousa", "joao@gmail.com");
         List<User> list = new ArrayList<>();
 
-        list.addAll(Arrays.asList(maria,joao));
+        list.addAll(Arrays.asList(maria,davi));
         return ResponseEntity.ok().body(list);
     }
 }
