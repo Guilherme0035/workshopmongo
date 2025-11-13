@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -23,6 +21,5 @@ public class UserResource {
     public ResponseEntity<List<User>> findAllUsers(){
        List<User> list = userService.findAllUsers();
         return ResponseEntity.ok().body(list);
-
     }
 }
