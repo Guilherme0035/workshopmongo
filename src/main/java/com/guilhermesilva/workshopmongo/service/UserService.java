@@ -32,4 +32,13 @@ public class UserService {
     public User fromDTO(UserDTO objDTO){
         return new User(objDTO.getId(),objDTO.getName(),objDTO.getEmail());
     }
+
+    public void deletedUser(String id){
+        if (userRepository.existsById(id)){
+            userRepository.deleteById(id);
+        }
+        else {
+            throw new ObjectNotFoundException("Usuário não foi encontrado");
+        }
+    }
 }
