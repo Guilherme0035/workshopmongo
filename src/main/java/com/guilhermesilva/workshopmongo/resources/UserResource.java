@@ -4,6 +4,7 @@ import com.guilhermesilva.workshopmongo.domain.User;
 import com.guilhermesilva.workshopmongo.dto.UserDTO;
 import com.guilhermesilva.workshopmongo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.Update;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -44,6 +45,12 @@ public class UserResource {
     public ResponseEntity<Void> deletedUser(@PathVariable String id){
         userService.deletedUser(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "{id}")
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User obj){
+        User user = userService.updateUser(id,obj);
+        return ResponseEntity.ok().body(user);
     }
 }
 
