@@ -3,6 +3,7 @@ package com.guilhermesilva.workshopmongo.config;
 import com.guilhermesilva.workshopmongo.domain.Post;
 import com.guilhermesilva.workshopmongo.domain.User;
 import com.guilhermesilva.workshopmongo.dto.AuthorDTO;
+import com.guilhermesilva.workshopmongo.dto.CommentDTO;
 import com.guilhermesilva.workshopmongo.repository.PostRepository;
 import com.guilhermesilva.workshopmongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,12 @@ public class instantiaton implements CommandLineRunner {
         Post post1 = new Post(null, Instant.parse("2019-06-20T21:53:07Z"), "Partiu comer", "Vou viajar para São Paulo", new AuthorDTO(maria));
         Post post2 = new Post(null, Instant.parse("2019-06-20T21:53:07Z"),"Bom dia", "Acordei feliz hoje", new AuthorDTO(maria));
 
+        CommentDTO c1 = new CommentDTO("Boa viagem mano!",Instant.parse("2019-06-20T21:53:07Z"),new AuthorDTO(alex));
+        CommentDTO c2 = new CommentDTO("Aproveite!",Instant.parse("2019-06-20T21:53:07Z"),new AuthorDTO(bob));
+        CommentDTO c3 = new CommentDTO("Tenha um ótimo dia!", Instant.parse("2019-06-20T21:53:07Z"), new AuthorDTO(alex));
+
+        post1.getComments().addAll(Arrays.asList(c1,c2));
+        post2.getComments().add(c3);
 
         postRepository.saveAll(Arrays.asList(post1,post2));
 
