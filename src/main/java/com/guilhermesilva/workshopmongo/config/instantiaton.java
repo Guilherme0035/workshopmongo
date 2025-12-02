@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import javax.xml.crypto.Data;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
@@ -39,8 +40,13 @@ public class instantiaton implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(maria,alex,bob));
 
-        Post post1 = new Post(null, Instant.parse("2019-06-20T21:53:07Z"), "Partiu comer", "Vou viajar para São Paulo", new AuthorDTO(maria));
-        Post post2 = new Post(null, Instant.parse("2019-06-20T21:53:07Z"),"Bom dia", "Acordei feliz hoje", new AuthorDTO(maria));
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+
+
+        Post post1 = new Post(null, sdf.parse("20/11/2025"), "Partiu viagem", "Vou viajar para São Paulo", new AuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("15/11/2025"),"Bom dia", "Acordei feliz hoje", new AuthorDTO(maria));
 
         CommentDTO c1 = new CommentDTO("Boa viagem mano!",Instant.parse("2019-06-20T21:53:07Z"),new AuthorDTO(alex));
         CommentDTO c2 = new CommentDTO("Aproveite!",Instant.parse("2019-06-20T21:53:07Z"),new AuthorDTO(bob));
